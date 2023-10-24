@@ -14,12 +14,14 @@ class CustomerController{
     private CustomerRepository customerRepository;
 
     @PostMapping("/add")
-    public String addCustomer(@RequestBody Customer customer) {
-        return CustomerRepository.addCustomer(customer);
+    public String addCustomer(@RequestBody Customer c) {
+        customerRepository.save(c);
+        return CustomerRepository.addCustomer(c);
     }
 
 
     @GetMapping
+    @CrossOrigin (origins = "http://localhost")
     public List<Customer> getCustomers() {
         return customerRepository.findAll();
     }
