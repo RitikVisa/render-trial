@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/customers")
+@CrossOrigin(origins = "*")
 class CustomerController{
 
     @Autowired
@@ -15,15 +16,11 @@ class CustomerController{
 
     @PostMapping("/add")
     public String addCustomer(@RequestBody Customer c) {
-        if (c.getImageUrl() == null || c.getImageUrl().isEmpty()) {
-            c.setImageUrl("https://tastyethnics.com/wp-content/uploads/bb-plugin/cache/default-profile-square-3f741d55120a0a7f45ccc788b01daeae-.png");
-        }
         customerRepository.save(c);
         return CustomerRepository.addCustomer(c);
     }
 
     @GetMapping
-    @CrossOrigin (origins = "http://localhost")
     public List<Customer> getCustomers() {
         return customerRepository.findAll();
     }
