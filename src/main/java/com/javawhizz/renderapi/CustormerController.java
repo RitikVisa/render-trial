@@ -15,6 +15,9 @@ class CustomerController{
 
     @PostMapping("/add")
     public String addCustomer(@RequestBody Customer c) {
+        if(c.getImageUrl()==null){
+            c.setImageUrl("src/main/java/com/javawhizz/renderapi/default-profile-square.png");
+        }
         customerRepository.save(c);
         return CustomerRepository.addCustomer(c);
     }
