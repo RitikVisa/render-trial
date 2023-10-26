@@ -24,5 +24,17 @@ class CustomerController{
     @CrossOrigin (origins = "http://localhost")
     public List<Customer> getCustomers() {
         return customerRepository.findAll();
+
     }
+
+    @DeleteMapping("/delete")
+    public String deleteUser(@RequestParam("id") Long id) {
+        // Implement your logic to delete the user with the given id here.
+        customerRepository.deleteById(id);
+        return "User deleted successfully"; // You should return an appropriate response.
+    }
+
+
+
 }
+

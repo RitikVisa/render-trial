@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
 
         public static String addCustomer(Customer customer){
+
             return "Sucessfully added Customer";
         }
 }
