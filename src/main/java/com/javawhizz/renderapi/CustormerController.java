@@ -15,6 +15,9 @@ class CustomerController{
 
     @PostMapping("/add")
     public String addCustomer(@RequestBody Customer c) {
+        if(c.getImageUrl().length()== 0){
+            c.setImageUrl("https://tastyethnics.com/wp-content/uploads/bb-plugin/cache/default-profile-square-3f741d55120a0a7f45ccc788b01daeae-.png");
+        }
         customerRepository.save(c);
         return CustomerRepository.addCustomer(c);
     }
