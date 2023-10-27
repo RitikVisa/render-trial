@@ -41,7 +41,7 @@ class CustomerController{
 //    }
 
     @PutMapping
-    public String updateCustomer(@RequestParam("id") Long id, @RequestBody Customer updatedCustomer) {
+    public Customer updateCustomer(@RequestParam("id") Long id, @RequestBody Customer updatedCustomer) {
         Optional<Customer> existingCustomerOptional = customerRepository.findById(id);
 
         if (existingCustomerOptional.isPresent()) {
@@ -67,10 +67,11 @@ class CustomerController{
 
             customerRepository.save(existingCustomer);
 
-            return "Customer with ID " + id + " updated successfully";
-        } else {
-            return "Customer with ID " + id + " not found";
+
+
         }
+        return existingCustomerOptional.get();
+
     }
 
 
